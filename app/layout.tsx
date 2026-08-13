@@ -1,10 +1,14 @@
 import { Analytics } from '@vercel/analytics/next'
+import { Cormorant_Garamond, DM_Sans } from 'next/font/google'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
+const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-dm-sans' })
+const cormorant = Cormorant_Garamond({ subsets: ['latin'], variable: '--font-cormorant' })
+
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
+  title: 'Vandana & Sateesh | Wedding Invitation',
+  description: 'A wedding celebration for S. Vandana and V. Sateesh on 28 August 2026 in Venkatagiri.',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -26,11 +30,9 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  colorScheme: 'light dark',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' },
-  ],
+  colorScheme: 'light',
+  themeColor: '#f7f4ed',
+  userScalable: false,
 }
 
 export default function RootLayout({
@@ -39,8 +41,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className="antialiased">
+    <html lang="en" className="bg-background">
+      <body className={`${dmSans.variable} ${cormorant.variable} antialiased font-sans`}>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

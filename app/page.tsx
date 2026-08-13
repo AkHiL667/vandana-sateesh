@@ -1,16 +1,117 @@
-export default function Home() {
+'use client'
+
+import { useEffect, useState } from 'react'
+import { ChevronDown, Compass, Heart, MapPin, Music2, Pause, Play, Sparkles } from 'lucide-react'
+
+const petals = [
+  { left: '8%', delay: '0s', duration: '13s' },
+  { left: '22%', delay: '3s', duration: '16s' },
+  { left: '47%', delay: '7s', duration: '14s' },
+  { left: '72%', delay: '1s', duration: '17s' },
+  { left: '88%', delay: '5s', duration: '15s' },
+]
+
+function Ornament({ className = '' }: { className?: string }) {
+  return <div aria-hidden="true" className={`ornament ${className}`}>✦　❧　✦</div>
+}
+
+function Envelope({ opened, onOpen }: { opened: boolean; onOpen: () => void }) {
   return (
-    <div className="flex min-h-screen items-center justify-center font-sans">
-      <main className="flex w-full max-w-3xl flex-col items-center gap-8 px-6 py-16 text-center sm:items-start sm:text-left">
-        <div className="flex flex-col gap-4">
-          <h1 className="text-4xl font-bold tracking-tight">
-            marriage invitation
-          </h1>
-          <p className="max-w-md text-lg text-muted-foreground">
-            To get started, send a prompt or modify this page directly.
-          </p>
-        </div>
-      </main>
-    </div>
-  );
+    <section className={`envelope-stage ${opened ? 'is-open' : ''}`} aria-label="Open your invitation">
+      <div className="petal-field" aria-hidden="true">
+        {petals.map((petal, index) => <span key={index} className="petal" style={petal} />)}
+      </div>
+      <div className="envelope-copy">
+        <p className="eyebrow">A wedding invitation</p>
+        <h1>For two hearts,<br /><em>one beautiful beginning.</em></h1>
+        <p className="envelope-hint">Tap the seal to open</p>
+      </div>
+      <button className="envelope-button" onClick={onOpen} aria-label="Open the wedding invitation">
+        <div className="paper-card"><span>With love</span><strong>V &amp; S</strong></div>
+        <div className="envelope-body" />
+        <div className="envelope-flap" />
+        <div className="wax-seal"><span>V</span></div>
+      </button>
+      <p className="scroll-note">A celebration of love · 28 August 2026</p>
+    </section>
+  )
+}
+
+function MusicToggle() {
+  const [playing, setPlaying] = useState(false)
+  return (
+    <button className="music-toggle" onClick={() => setPlaying(!playing)} aria-pressed={playing} aria-label={playing ? 'Pause music' : 'Play music'}>
+      {playing ? <Pause size={15} /> : <Play size={15} />} <span>{playing ? 'Pause' : 'Music'}</span>
+    </button>
+  )
+}
+
+export default function Home() {
+  const [opened, setOpened] = useState(false)
+  const [active, setActive] = useState(false)
+
+  useEffect(() => {
+    if (!opened) return
+    const timer = window.setTimeout(() => setActive(true), 1100)
+    return () => window.clearTimeout(timer)
+  }, [opened])
+
+  useEffect(() => {
+    if (!active) return
+    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
+      if (entry.isIntersecting) entry.target.classList.add('in-view')
+    }), { threshold: 0.14 })
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [active])
+
+  return (
+    <main className="invitation-shell">
+      {!opened && <Envelope opened={opened} onOpen={() => setOpened(true)} />}
+      <div className={`invitation-content ${active ? 'visible' : ''}`}>
+        <div className="floating-tools"><MusicToggle /><a href="#details" aria-label="Skip to wedding details"><ChevronDown size={17} /></a></div>
+        <section className="hero section-pad">
+          <p className="eyebrow reveal">Together with their families</p>
+          <div className="hero-monogram reveal"><span>V</span><Heart size={23} fill="currentColor" /><span>S</span></div>
+          <h2 className="hero-title reveal">S. Vandana <i>&amp;</i><br /> V. Sateesh</h2>
+          <Ornament className="reveal" />
+          <p className="hero-date reveal">28 <span>·</span> 08 <span>·</span> 2026</p>
+          <p className="hero-subtitle reveal">Invite you to share in the joy<br />of their wedding celebration</p>
+          <a className="down-link reveal" href="#details">Discover the celebration <ChevronDown size={16} /></a>
+        </section>
+
+        <section id="details" className="sage-panel section-pad reveal">
+          <div className="section-label">The invitation</div>
+          <p className="large-quote">“Two souls, one heart,<br /><em>and a lifetime to go.”</em></p>
+          <div className="family-line"><span>Daughter of</span><strong>Smt. Suddhamalla Aruna<br />&amp; Sri Suddhamalla Prabhakar Naidu</strong></div>
+          <Heart className="tiny-heart" size={16} fill="currentColor" />
+          <div className="family-line"><span>Son of</span><strong>Smt. Valli Shobha<br />&amp; Sri Valli Subbarao</strong><small>Venkatagiri Mandal, Tirupati District</small></div>
+        </section>
+
+        <section className="story section-pad">
+          <div className="section-label">A new chapter</div>
+          <h3 className="section-title reveal">The beginning<br /><em>of forever.</em></h3>
+          <div className="story-copy reveal"><span className="story-mark">V <i>&amp;</i> S</span><p>We found something rare in each other — a home, a friendship, and a promise worth making. With the blessings of our families, we are stepping into our next chapter together.</p></div>
+          <Ornament className="reveal" />
+        </section>
+
+        <section className="events dark-panel section-pad" id="events">
+          <div className="section-label light reveal">Mark your calendar</div>
+          <h3 className="section-title light reveal">A day to<br /><em>remember.</em></h3>
+          <div className="event-grid">
+            <article className="event-card reveal"><div className="event-icon"><Sparkles size={20} /></div><p className="event-type">Reception &amp; Dinner</p><h4>Friday, 28 August</h4><p>6:30 PM onwards</p></article>
+            <article className="event-card reveal"><div className="event-icon"><Heart size={20} /></div><p className="event-type">Muhurtam</p><h4>Friday, 28 August</h4><p>Night 10:50 – 11:55</p><small>Shubha Vrushaba Lagna</small></article>
+          </div>
+        </section>
+
+        <section className="venue section-pad reveal">
+          <div className="section-label">Join us at</div><MapPin className="venue-pin" size={25} /><h3 className="section-title">SRL Convention<br /><em>Hall</em></h3><p>H.P. Petrol Bunk Prakasam<br />Tirupati Road, Venkatagiri</p><a className="map-link" href="https://www.google.com/maps/search/SRL+Convention+Hall+Venkatagiri" target="_blank" rel="noreferrer"><Compass size={16} /> View on map</a>
+        </section>
+
+        <section className="families sage-panel section-pad reveal"><div className="section-label">With the blessings of</div><h3 className="section-title">Our beloved<br /><em>families.</em></h3><div className="family-columns"><div><span>Bride&apos;s family</span><p>Y. Vamshikrishna<br />Y. Jagadeesh Naidu</p></div><div><span>Groom&apos;s family</span><p>T. Shobha<br />A. Salik</p></div></div></section>
+
+        <footer className="closing section-pad"><Ornament /><p className="eyebrow">Your presence is our present</p><h3>We can&apos;t wait to<br /><em>celebrate with you.</em></h3><div className="footer-monogram">V <Heart size={17} fill="currentColor" /> S</div><p className="footer-date">28 · 08 · 2026</p></footer>
+      </div>
+    </main>
+  )
 }
