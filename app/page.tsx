@@ -80,13 +80,13 @@ export default function Home() {
     <main className={`invitation-shell ${active ? 'has-revealed' : ''}`}>
       <Envelope opened={opened} onOpen={() => setOpened(true)} />
       <div className={`invitation-content ${active ? 'visible' : ''}`}>
-        <div className="celebration-ribbons" aria-hidden="true"><i /><i /><i /><i /></div>
+        <div className="celebration-ribbons" aria-hidden="true"><i>✿</i><i>❀</i><i>✿</i><i>❀</i><i>✽</i><i>✿</i></div>
         <div className="floating-tools"><MusicToggle /><a href="#details" aria-label="Skip to wedding details"><ChevronDown size={17} /></a></div>
         <section className="hero section-pad">
           <div className="hero-sparkles" aria-hidden="true"><span>✦</span><span>✧</span><span>✦</span><span>✧</span></div>
           <p className="eyebrow reveal">Together with their families</p>
           <div className="hero-monogram reveal"><span>V</span><Heart size={23} fill="currentColor" /><span>S</span></div>
-          <h2 className="hero-title reveal">S. Vandana <i>&amp;</i><br /> V. Sateesh</h2>
+          <h2 className="hero-title reveal">S. Vandana <i>&amp;</i><br /> V. Satish</h2>
           <Ornament className="reveal" />
           <p className="hero-date reveal">28 <span>·</span> 08 <span>·</span> 2026</p>
           <p className="hero-subtitle reveal">Invite you to share in the joy<br />of their wedding celebration</p>
@@ -96,9 +96,9 @@ export default function Home() {
         <section id="details" className="sage-panel section-pad reveal">
           <div className="section-label">The invitation</div>
           <p className="large-quote">“Two souls, one heart,<br /><em>and a lifetime to go.”</em></p>
-          <div className="family-line"><span>Daughter of</span><strong>Smt. Suddhamalla Aruna<br />&amp; Sri Suddhamalla Prabhakar Naidu</strong></div>
+          <div className="family-line"><span>Daughter of</span><strong>Smt. Suddamalla Aruna<br />&amp; Late Sri Suddamalla Prabhakar Naidu</strong></div>
           <Heart className="tiny-heart" size={16} fill="currentColor" />
-          <div className="family-line"><span>Son of</span><strong>Smt. Valli Shobha<br />&amp; Sri Valli Subbarao</strong><small>Venkatagiri Mandal, Tirupati District</small></div>
+          <div className="family-line"><span>Son of</span><strong>Smt. Vaddi Shobha<br />&amp; Late Sri Vaddi Subbarao</strong><small>Venkatagiri Mandal, Tirupati District</small></div>
         </section>
 
         <section className="story section-pad">
@@ -121,9 +121,7 @@ export default function Home() {
           <div className="section-label">Join us at</div><MapPin className="venue-pin" size={25} /><h3 className="section-title">SRL Convention<br /><em>Hall</em></h3><p>H.P. Petrol Bunk Prakasam<br />Tirupati Road, Venkatagiri</p><a className="map-link" href="https://www.google.com/maps/search/SRL+Convention+Hall+Venkatagiri" target="_blank" rel="noreferrer"><Compass size={16} /> View on map</a>
         </section>
 
-        <section className="families sage-panel section-pad reveal"><div className="section-label">With the blessings of</div><h3 className="section-title">Our beloved<br /><em>families.</em></h3><div className="family-columns"><div><span>Bride&apos;s family</span><p>Y. Vamshikrishna<br />Y. Jagadeesh Naidu</p></div><div><span>Groom&apos;s family</span><p>T. Shobha<br />A. Salik</p></div></div></section>
-
-        <footer className="closing section-pad"><Ornament /><p className="eyebrow">Your presence is our present</p><h3>We can&apos;t wait to<br /><em>celebrate with you.</em></h3><div className="footer-monogram">V <Heart size={17} fill="currentColor" /> S</div><p className="footer-date">28 · 08 · 2026</p></footer>
+        <footer className="closing section-pad"><Ornament /><p className="eyebrow">We would love to celebrate with you</p><h3>We can&apos;t wait to<br /><em>celebrate with you.</em></h3><div className="footer-monogram">V <Heart size={17} fill="currentColor" /> S</div><p className="footer-date">28 · 08 · 2026</p></footer>
       </div>
     </main>
   )
