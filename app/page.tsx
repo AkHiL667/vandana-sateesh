@@ -137,7 +137,7 @@ export default function Home() {
           <div className="section-label">Join us at</div><MapPin className="venue-pin" size={25} /><h3 className="section-title">SRL Convention<br /><em>Hall</em></h3><p>H.P. Petrol Bunk Prakasam<br />Tirupati Road, Venkatagiri</p><a className="map-link" href="https://www.google.com/maps/search/SRL+Convention+Hall+Venkatagiri" target="_blank" rel="noreferrer"><Compass size={16} /> View on map</a>
         </section>
 
-        <footer className="closing section-pad"><Ornament /><p className="eyebrow">We would love to celebrate with you</p><h3>We can&apos;t wait to<br /><em>celebrate with you.</em></h3><div className="footer-monogram">V <Heart size={17} fill="currentColor" /> S</div><p className="footer-date">28 · 08 · 2026</p></footer>
+        <footer className="closing section-pad"><Ornament /><p className="eyebrow">A celebration of love, laughter, and a lifetime together.</p><h3>We would love to<br /><em>celebrate with you.</em></h3><div className="footer-monogram">V <Heart size={17} fill="currentColor" /> S</div><p className="footer-date">28 · 08 · 2026</p></footer>
       </div>
     </main>
   )
