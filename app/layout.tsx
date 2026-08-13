@@ -8,7 +8,7 @@ const cormorant = Cormorant_Garamond({ subsets: ['latin'], variable: '--font-cor
 
 export const metadata: Metadata = {
   title: 'Vandana & Sateesh | Wedding Invitation',
-  description: 'A wedding celebration for S. Vandana and V. Sateesh on 28 August 2026 in Venkatagiri.',
+  description: 'A wedding celebration for S. Vandana and V. Satish on 28 August 2026 in Venkatagiri.',
   generator: 'v0.app',
   icons: {
     icon: [
