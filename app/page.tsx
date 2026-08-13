@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState, type RefObject } from 'react'
 import { ChevronDown, Compass, Heart, MapPin, Music2, Pause, Play, Sparkles } from 'lucide-react'
 
 const petals = [
@@ -48,18 +48,42 @@ function Envelope({ opened, onOpen }: { opened: boolean; onOpen: () => void }) {
   )
 }
 
-function MusicToggle() {
-  const [playing, setPlaying] = useState(false)
+function MusicToggle({ audioRef, playing, onToggle }: { audioRef: RefObject<HTMLAudioElement | null>; playing: boolean; onToggle: () => void }) {
   return (
-    <button className="music-toggle" onClick={() => setPlaying(!playing)} aria-pressed={playing} aria-label={playing ? 'Pause music' : 'Play music'}>
-      {playing ? <Pause size={15} /> : <Play size={15} />} <span>{playing ? 'Pause' : 'Music'}</span>
-    </button>
+    <>
+      <audio ref={audioRef} src="/kadalalle-bgm.mp3" loop preload="auto" />
+      <button className="music-toggle" onClick={onToggle} aria-pressed={playing} aria-label={playing ? 'Mute music' : 'Play music'}>
+        {playing ? <Pause size={15} /> : <Play size={15} />} <span>{playing ? 'Mute' : 'Music'}</span>
+      </button>
+    </>
   )
 }
 
 export default function Home() {
   const [opened, setOpened] = useState(false)
   const [active, setActive] = useState(false)
+  const [playing, setPlaying] = useState(false)
+  const audioRef = useRef<HTMLAudioElement>(null)
+
+  const openInvitation = () => {
+    setOpened(true)
+    const audio = audioRef.current
+    if (audio) {
+      audio.volume = 0.42
+      void audio.play().then(() => setPlaying(true)).catch(() => setPlaying(false))
+    }
+  }
+
+  const toggleMusic = () => {
+    const audio = audioRef.current
+    if (!audio) return
+    if (audio.paused) {
+      void audio.play().then(() => setPlaying(true))
+    } else {
+      audio.pause()
+      setPlaying(false)
+    }
+  }
 
   useEffect(() => {
     if (!opened) return
@@ -78,10 +102,10 @@ export default function Home() {
 
   return (
     <main className={`invitation-shell ${active ? 'has-revealed' : ''}`}>
-      <Envelope opened={opened} onOpen={() => setOpened(true)} />
+      <Envelope opened={opened} onOpen={openInvitation} />
       <div className={`invitation-content ${active ? 'visible' : ''}`}>
         <div className="celebration-ribbons" aria-hidden="true"><i>✿</i><i>❀</i><i>✿</i><i>❀</i><i>✽</i><i>✿</i></div>
-        <div className="floating-tools"><MusicToggle /><a href="#details" aria-label="Skip to wedding details"><ChevronDown size={17} /></a></div>
+        <div className="floating-tools"><MusicToggle audioRef={audioRef} playing={playing} onToggle={toggleMusic} /><a href="#details" aria-label="Skip to wedding details"><ChevronDown size={17} /></a></div>
         <section className="hero section-pad">
           <div className="hero-sparkles" aria-hidden="true"><span>✦</span><span>✧</span><span>✦</span><span>✧</span></div>
           <p className="eyebrow reveal">Together with their families</p>
