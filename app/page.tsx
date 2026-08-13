@@ -111,7 +111,7 @@ export default function Home() {
             </figure>
             <figure className="photo-card photo-card-offset reveal">
               <div className="photo-frame"><img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-S0AFbooxhZdlvHuTWvBz94twSmGuRR.png" alt="Vandana and Satish seated together in a traditional home" /></div>
-              <figcaption><span>Our favorite place</span><strong>Where love feels like home.</strong></figcaption>
+              <figcaption><span>A beautiful beginning</span><strong>And a lifetime of love ahead.</strong></figcaption>
             </figure>
           </div>
           <Ornament className="reveal" />
