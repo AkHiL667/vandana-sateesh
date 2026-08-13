@@ -11,6 +11,13 @@ const petals = [
   { left: '88%', delay: '5s', duration: '15s' },
 ]
 
+const confetti = [
+  { left: '8%', color: 'gold', delay: '.1s' }, { left: '17%', color: 'pink', delay: '.28s' },
+  { left: '28%', color: 'green', delay: '.44s' }, { left: '40%', color: 'gold', delay: '.2s' },
+  { left: '55%', color: 'pink', delay: '.36s' }, { left: '67%', color: 'green', delay: '.52s' },
+  { left: '79%', color: 'gold', delay: '.18s' }, { left: '91%', color: 'pink', delay: '.32s' },
+] as const
+
 function Ornament({ className = '' }: { className?: string }) {
   return <div aria-hidden="true" className={`ornament ${className}`}>✦　❧　✦</div>
 }
@@ -26,11 +33,15 @@ function Envelope({ opened, onOpen }: { opened: boolean; onOpen: () => void }) {
         <h1>For two hearts,<br /><em>one beautiful beginning.</em></h1>
         <p className="envelope-hint">Tap the seal to open</p>
       </div>
+      <div className="party-burst" aria-hidden="true">
+        {confetti.map((piece, index) => <span key={index} className={`confetti confetti-${piece.color}`} style={{ left: piece.left, animationDelay: piece.delay }} />)}
+        <span className="burst-star burst-star-one">✦</span><span className="burst-star burst-star-two">✧</span><span className="burst-star burst-star-three">✦</span>
+      </div>
       <button className="envelope-button" onClick={onOpen} aria-label="Open the wedding invitation">
-        <div className="paper-card"><span>With love</span><strong>V &amp; S</strong></div>
+        <div className="paper-card"><span>With love</span><strong>V <Heart aria-hidden="true" size={22} fill="currentColor" /> S</strong></div>
         <div className="envelope-body" />
         <div className="envelope-flap" />
-        <div className="wax-seal"><span>V</span></div>
+        <div className="wax-seal"><Heart aria-hidden="true" size={25} fill="currentColor" /></div>
       </button>
       <p className="scroll-note">A celebration of love · 28 August 2026</p>
     </section>
@@ -66,11 +77,13 @@ export default function Home() {
   }, [active])
 
   return (
-    <main className="invitation-shell">
-      {!opened && <Envelope opened={opened} onOpen={() => setOpened(true)} />}
+    <main className={`invitation-shell ${active ? 'has-revealed' : ''}`}>
+      <Envelope opened={opened} onOpen={() => setOpened(true)} />
       <div className={`invitation-content ${active ? 'visible' : ''}`}>
+        <div className="celebration-ribbons" aria-hidden="true"><i /><i /><i /><i /></div>
         <div className="floating-tools"><MusicToggle /><a href="#details" aria-label="Skip to wedding details"><ChevronDown size={17} /></a></div>
         <section className="hero section-pad">
+          <div className="hero-sparkles" aria-hidden="true"><span>✦</span><span>✧</span><span>✦</span><span>✧</span></div>
           <p className="eyebrow reveal">Together with their families</p>
           <div className="hero-monogram reveal"><span>V</span><Heart size={23} fill="currentColor" /><span>S</span></div>
           <h2 className="hero-title reveal">S. Vandana <i>&amp;</i><br /> V. Sateesh</h2>
