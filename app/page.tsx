@@ -101,6 +101,22 @@ export default function Home() {
           <div className="family-line"><span>Son of</span><strong>Smt. Vaddi Shobha<br />&amp; Late Sri Vaddi Subbarao</strong><small>Venkatagiri Mandal, Tirupati District</small></div>
         </section>
 
+        <section className="photo-story section-pad" aria-label="Moments from the couple's journey">
+          <div className="section-label reveal">Moments together</div>
+          <h3 className="section-title reveal">A glimpse of<br /><em>their story.</em></h3>
+          <div className="photo-grid">
+            <figure className="photo-card photo-card-wide reveal">
+              <div className="photo-frame"><img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-gw9kkkDdD0J1ZLp1CVKuUgMHZ8dH1B.png" alt="Vandana and Satish standing together on a grand illuminated staircase" /></div>
+              <figcaption><span>Side by side</span><strong>Every step, together.</strong></figcaption>
+            </figure>
+            <figure className="photo-card photo-card-offset reveal">
+              <div className="photo-frame"><img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-S0AFbooxhZdlvHuTWvBz94twSmGuRR.png" alt="Vandana and Satish seated together in a traditional home" /></div>
+              <figcaption><span>Our favorite place</span><strong>Where love feels like home.</strong></figcaption>
+            </figure>
+          </div>
+          <Ornament className="reveal" />
+        </section>
+
         <section className="story section-pad">
           <div className="section-label">A new chapter</div>
           <h3 className="section-title reveal">The beginning<br /><em>of forever.</em></h3>
