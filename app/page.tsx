@@ -110,7 +110,7 @@ export default function Home() {
           <div className="hero-sparkles" aria-hidden="true"><span>✦</span><span>✧</span><span>✦</span><span>✧</span></div>
           <p className="eyebrow reveal">Together with their families</p>
           <div className="hero-monogram reveal"><span>V</span><Heart size={23} fill="currentColor" /><span>S</span></div>
-          <h2 className="hero-title reveal">S. Vandana <i>&amp;</i><br /> V. Satish</h2>
+          <h2 className="hero-title reveal">S. Vandana <i>&amp;</i><br /> V. Sathish</h2>
           <Ornament className="reveal" />
           <p className="hero-date reveal">28 <span>·</span> 08 <span>·</span> 2026</p>
           <p className="hero-subtitle reveal">Invite you to share in the joy<br />of their wedding celebration</p>
@@ -130,11 +130,11 @@ export default function Home() {
           <h3 className="section-title reveal">A glimpse of<br /><em>their story.</em></h3>
           <div className="photo-grid">
             <figure className="photo-card photo-card-wide reveal">
-              <div className="photo-frame"><img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-gw9kkkDdD0J1ZLp1CVKuUgMHZ8dH1B.png" alt="Vandana and Satish standing together on a grand illuminated staircase" /></div>
+              <div className="photo-frame"><img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-gw9kkkDdD0J1ZLp1CVKuUgMHZ8dH1B.png" alt="Vandana and Sathish standing together on a grand illuminated staircase" /></div>
               <figcaption><span>Side by side</span><strong>Every step, together.</strong></figcaption>
             </figure>
             <figure className="photo-card photo-card-offset reveal">
-              <div className="photo-frame"><img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-S0AFbooxhZdlvHuTWvBz94twSmGuRR.png" alt="Vandana and Satish seated together in a traditional home" /></div>
+              <div className="photo-frame"><img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-S0AFbooxhZdlvHuTWvBz94twSmGuRR.png" alt="Vandana and Sathish seated together in a traditional home" /></div>
               <figcaption><span>A beautiful beginning</span><strong>And a lifetime of love ahead.</strong></figcaption>
             </figure>
           </div>
